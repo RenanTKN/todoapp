@@ -8,7 +8,7 @@ const AddTodo = () => {
   const dispatch = useDispatch();
 
   const removeExtraSpace = (string) => {
-    return string.replace(/s+/g, " ").trim();
+    return string.replace(/\s+/g, " ").trim();
   };
 
   const handleSubmit = (e) => {

@@ -43,6 +43,8 @@ body {
 
 /** todo item **/
 .todo-item {
+  display: flex;
+  align-items: center;
   font-family: monospace;
   cursor: pointer;
   line-height: 1.5;
@@ -50,6 +52,13 @@ body {
 .todo-item__text--completed {
   text-decoration: line-through;
   color: lightgray;
+}
+
+.todo-delete {
+  color: #dc3545;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 /** visibility filters **/
