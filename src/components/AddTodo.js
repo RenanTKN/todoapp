@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/actions";
 
-const AddTodo = ({ addTodo }) => {
+const AddTodo = () => {
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
+  const dispatch = useDispatch();
 
   const removeExtraSpace = (string) => {
     return string.replace(/s+/g, " ").trim();
@@ -17,7 +18,7 @@ const AddTodo = ({ addTodo }) => {
 
     if (todo) {
       // dispatches actions to add todo
-      addTodo(todo);
+      dispatch(addTodo(todo));
 
       // sets state back to empty string
       setInput("");
@@ -43,4 +44,4 @@ const AddTodo = ({ addTodo }) => {
   );
 };
 
-export default connect(null, { addTodo })(AddTodo);
+export default AddTodo;

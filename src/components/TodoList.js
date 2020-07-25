@@ -1,22 +1,23 @@
 import React from "react";
 import Todo from "./Todo";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
 
-const TodoList = ({ todos }) => (
-  <ul className="todo-list">
-    {todos && todos.length
-      ? todos.map((todo) => {
-          return <Todo key={`todo-${todo.id}`} todo={todo} />;
-        })
-      : "No todos, yay!"}
-  </ul>
-);
+const TodoList = () => {
+  const visibilityFilter = useSelector((state) => state.visibilityFilter);
 
-const mapStateToProps = (state) => {
-  const { visibilityFilter } = state;
-  const todos = getTodosByVisibilityFilter(state, visibilityFilter);
-  return { todos };
+  const todos = useSelector((state) =>
+    getTodosByVisibilityFilter(state, visibilityFilter)
+  );
+  return (
+    <ul className="todo-list">
+      {todos && todos.length
+        ? todos.map((todo) => {
+            return <Todo key={`todo-${todo.id}`} todo={todo} />;
+          })
+        : "No todos, yay!"}
+    </ul>
+  );
 };
 
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;
